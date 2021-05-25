@@ -1,0 +1,61 @@
+body {
+    margin: 0px;
+    font-family: 'Muli', sans-serif;
+}
+
+.p404 {
+    background: linear-gradient(#21c08b, #ab88ff);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0px 30px;
+    min-height: 100vh;
+}
+
+.p404__container {
+    background-color: transparent;
+    color: white;
+    padding: 40px 68px;
+    height: 250px;
+    width: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.text {
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 100px;
+    margin: 0px;
+}
+
+.animated {
+    animation-fill-mode: both;
+    animation-iteration-count: infinite;
+}
+
+@keyframes message404 {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.message404 {
+    animation-name: message404;
+    animation-duration: 1s;
+}
+
+.p404__container--message {
+    text-align: center;
+    font-size: 16px;
+    margin: 0px;
+}

@@ -1,0 +1,16 @@
+<!-- si el producto es nulo no se renderiza y así no generar error -->
+<div *ngIf="(product$ | async) as product">
+    <div>
+        <img class="image" [src]="product.image" alt="">
+    </div>
+    <div>
+        <ul>
+            <li>Nombre: {{ product.title }}</li>
+            <li>Precio: {{ product.price | currency }}</li>
+        </ul>
+        <p>{{ product.description }}</p>
+    </div>
+    <button (click)="createProduct()">Crear</button>
+    <button (click)="updateProduct()">Actualizar</button>
+    <button (click)="deleteProduct()">Borrar</button>
+</div>

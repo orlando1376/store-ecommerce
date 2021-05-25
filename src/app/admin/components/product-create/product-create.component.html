@@ -1,0 +1,55 @@
+<form [formGroup]="form" (ngSubmit)="saveProduct($event)">
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title>Producto</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <div class="row">
+                <div class="col-xs">
+                    <mat-form-field>
+                        <input placeholder="Id" formControlName="id" matInput type="text">
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs">
+                    <mat-form-field>
+                        <input placeholder="Título" formControlName="title" matInput type="text">
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs">
+                    <mat-form-field>
+                        <input placeholder="Precio" formControlName="price" matInput type="number">
+                    </mat-form-field>
+                    <div *ngIf="form.get('price').errors && form.get('price').dirty">
+                        <mat-error *ngIf="form.get('price').hasError('required')">Este campo es requerido</mat-error>
+                        <mat-error *ngIf="form.get('price').hasError('price_invalid')">Precio es inválido</mat-error>
+
+                        <!-- 
+                            Utilizando el get priceField
+                            <mat-error *ngIf="priceField.hasError('price_invalid')">Precio es inválido</mat-error>
+                        -->
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs">
+                    <mat-form-field>
+                        <textarea placeholder="Descripción" formControlName="description" matInput></textarea>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs">
+                    <img class="image" *ngIf="(image$ | async) as image" [src]="image" alt="">
+                    <input type="file" (change)="uploadFile($event)">
+                </div>
+            </div>
+        </mat-card-content>
+        <mat-card-actions>
+            <button [disabled]="form.invalid" mat-raised-button type="submit">Guardar</button>
+        </mat-card-actions>
+    </mat-card>
+</form>

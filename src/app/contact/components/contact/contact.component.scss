@@ -1,0 +1,71 @@
+:host {
+    font-family: 'Lato', sans-serif;
+    margin: 0;
+    .hero {
+        background: #23475b;
+        color: white;
+        padding: 32px 15px;
+        display: grid;
+        grid-template-columns: minmax(auto, 1024px);
+        justify-content: center;
+    }
+    .hero-container {
+        display: grid;
+        grid-template-columns: 1fr 320px;
+        grid-template-areas: "title form" "description form" "description form";
+        grid-gap: 10px;
+    }
+    .title {
+        grid-area: title;
+        font-size: 36px;
+        font-weight: normal;
+        margin: 0;
+        display: flex;
+        align-items: center;
+    }
+    .form {
+        grid-area: form;
+        text-align: center;
+        background: rgb(255, 255, 255, .9);
+        padding: 1.5em;
+        border-radius: 10px;
+    }
+    .description {
+        grid-area: description;
+    }
+    .form p {
+        font-size: 20px;
+        color: #3a3b3f;
+        margin-bottom: 1em;
+    }
+    input {
+        width: 100%;
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid #dbdbe2;
+        border-radius: 5px;
+        box-sizing: border-box;
+        margin-bottom: 10px;
+    }
+    textarea {
+        font-family: 'Lato', sans-serif;
+        width: 100%;
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid #dbdbe2;
+        border-radius: 5px;
+        box-sizing: border-box;
+        margin-bottom: 10px;
+        resize: vertical/* Allow the user to vertically resize the textarea (not horizontally) */
+    }
+    button {
+        background: #98ca3f;
+        color: white;
+        padding: 10px 15px;
+        border-radius: 5px;
+        border: none;
+        font-size: 16px;
+        border-bottom: 5px solid #6d932b;
+        display: inline-block;
+    }
+}

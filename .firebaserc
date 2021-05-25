@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "store-787f2": {
+      "hosting": {
+        "store": [
+          "store-787f2"
+        ]
+      }
+    }
+  }
+}

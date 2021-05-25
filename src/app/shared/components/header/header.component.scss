@@ -1,0 +1,13 @@
+nav>a {
+    padding: 5px;
+    text-decoration: none;
+}
+
+// utiliza la clase acctive que colocamos con routerLinkActive
+nav>a.active {
+    background-color: cornflowerblue;
+}
+
+.header-row {
+    width: 100%;
+}
