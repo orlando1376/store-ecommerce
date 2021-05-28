@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 
 import { RandomUsersService } from '@core/services/randomUsers/random-users.service';
 
+// https://github.com/date-fns/date-fns
+import { addDays, format} from 'date-fns';
+
 // https://www.npmjs.com/package/file-saver
 import * as FileSaver from 'file-saver';
 
@@ -14,6 +17,7 @@ export class DemoComponent implements OnInit {
   title = 'store';
   items = ['Orlando', 'Franco', 'Cespedes'];
   power = 10;
+  date = '';
 
   addItem() {
     this.items.push('nuevo item');
@@ -57,4 +61,8 @@ export class DemoComponent implements OnInit {
       });
   }
 
+  dateAdd() {
+    const dateNewDate = addDays(new Date(), 20);
+    this.date = format(dateNewDate, 'yyyy/MMMM/dd');
+  }
 }

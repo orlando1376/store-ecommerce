@@ -1,6 +1,7 @@
-<input type="text" [(ngModel)]="title"> {{title}}
-
-<input type="text" [(ngModel)]="power"> {{title}} {{ power | exponential }}
+<div>
+    <input type="text" [(ngModel)]="title"> {{title}}
+    <input type="text" [(ngModel)]="power"> {{title}} {{ power | exponential }}
+</div>
 
 <div [ngSwitch]="title">
     <p *ngSwitchCase="'Orlando'">Este es Orlando</p>
@@ -9,16 +10,24 @@
     <p *ngSwitchDefault>No hay nombre</p>
 </div>
 
-<button (click)="addItem()">Agregar item</button>
+<div>
+    <button (click)="addItem()">Agregar item</button>
+    <ul>
+        <li *ngIf="items.length===0">Lista vacía</li>
+        <li *ngFor="let name of items; index as i">
+            {{name}} {{i}}
+            <button (click)="deleteItem(i)">Delete</button>
+        </li>
+    </ul>
+</div>
 
-<ul>
-    <li *ngIf="items.length===0">Lista vacía</li>
-    <li *ngFor="let name of items; index as i">
-        {{name}} {{i}}
-        <button (click)="deleteItem(i)">Delete</button>
-    </li>
-</ul>
+<div>
+    <button (click)="getRandomUsers()">Tipado de peticiones</button>
+    <button (click)="getFileTxt()">Descargar archivo(.txt)</button>
+    <button (click)="getFilePdf()">Descargar archivo(.pdf)</button>
+</div>
 
-<button (click)="getRandomUsers()">Tipado de peticiones</button>
-<button (click)="getFileTxt()">Descargar archivo(.txt)</button>
-<button (click)="getFilePdf()">Descargar archivo(.pdf)</button>
+<div>
+    <button (click)="dateAdd()">Adicionar 20 dias</button>
+    <input type="text" [(ngModel)]="date">
+</div>

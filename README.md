@@ -1,6 +1,6 @@
 # Angular
 
-# Comandos bash
+## Comandos bash
 
 ## `ng serve` ->
 
@@ -51,25 +51,25 @@ ng g c componente --inline-template
 
 ## `ng lint`->
 
-```
+```code
 ng lint
 ```
 
 Revisa el código del proyecto para ver si se están cumpliendo las reglas definidas en el archivo tslint.json
 
-```
+```code
 ng lint --format json
 ```
 
 Nos permite visualizar el resultado de la revisión con un formato json.
 
-```
+```code
 ng lint --fix
 ```
 
 Corrige automáticamente, dentro de lo posible, los errores encontrados.
 
-# [Directivas](https://angular.io/api/common#directives)
+## [Directivas](https://angular.io/api/common#directives)
 
 ## `ngIf`
 
@@ -89,8 +89,6 @@ Permite hacer data binding, osea conectar entre un dato y un componente
 <input type="text" [(ngModel)]="title"> <!-- Needs to import FormsModule in app.module.ts -->
 ```
 
-
-
 En proyectos reales puedes que te encuentres con dos tipos de NgModel
 
 1. [(ngModel)]=“nombre”
@@ -100,7 +98,7 @@ El primero hace un enlace de doble sentido, es decir, si se actualiza la vista s
 
 El segundo hace un enlace de un sólo sentido, este sentido va desde el modelo a la vista, pero la vista NO puede actualizar al modelo. Pueden copiar y pegar este código para comprobarlo.
 
-# String interpolation
+## String interpolation
 
 La interpolación es la forma de mostrar datos del **Componente** al **DOM** (esa representación que hace el browser del **HTML** con forma de objetos). Su notación es en forma de doble brackets `{{}}` () y lo que está dentro de esos brackets es lo que se quiere mostrar en pantalla «procesado».
 
@@ -131,7 +129,7 @@ También se le puede asignar a un atributo **HTML** (que espere un string) el va
 
 `<h1 innerText = {{pageTitle}}><h1>`  ← se asigna un valor “ya procesado” a un **Tag HTML**
 
-# Directivas Propias
+## Directivas Propias
 
 Para crear una directiva
 
@@ -144,9 +142,11 @@ Las directivas tienen un selector que es como su identificador el cual se debe c
 
 Recuerda que las directivas modifican dinamicamente los elementos desde el DOM, esto no es buena practica aplicarlo para todo ya que existen alternativas más usables como el data-binding
 
-## Ejemplo:
+## Ejemplo
 
-**selector = ‘[appTabRequired]’**
+```code
+selector = ‘[appTabRequired]’
+```
 
 En el constructor tendremos que hacer la inyeccion de dependencia **ElementRef**
 
@@ -176,7 +176,7 @@ export class HighlightDirective {
 
 ```
 
-### Implementación en el template:
+### Implementación en el template
 
 ```html
 <div appHighlight>
@@ -184,9 +184,7 @@ export class HighlightDirective {
 </div>
 ```
 
-
-
-# COMPONENTES EN ANGULAR - Sintaxis General
+## COMPONENTES EN ANGULAR - Sintaxis General
 
 Es muy bueno saber como construir un componente de manera manual, pero existe un comando para generar nuevos componentes de forma automática.
 
@@ -196,7 +194,7 @@ ng g c nombredelcomponente
 
 Nomenclatura : **name.component.ts**
 
-## `Decoradores`:
+## `Decoradores`
 
 Le dan un contexto a los artefactos de angular. Y le asigna el tipo de rol que cumplirá.
 
@@ -225,7 +223,7 @@ Se refiere al selector con el que vas a llamar a tu componente desde el html  (`
 
 El templateURL: es el archivo html.
 
-## `class`:
+## `class`
 
 Para que la clase sea utilizada por cualquiera se debe hacer "publica"
 
@@ -245,10 +243,9 @@ import { Component } from 'component-route'
   ...
 })
 export class AppModule { }
-
 ```
 
-# Uso de Inputs y Outputs
+## Uso de Inputs y Outputs
 
 Un componente sólo debe de tener una sóla responsabilidad (principio SOLID)
 
@@ -295,7 +292,7 @@ export class ProductComponent {
 }
 ```
 
-Los `EventEmmiter`'s pueden emitir un evento con un argumento que será recibido por el padre. 
+Los `EventEmmiter`'s pueden emitir un evento con un argumento que será recibido por el padre.
 
 ```typescript
 export class ProductComponent {
@@ -306,7 +303,7 @@ export class ProductComponent {
 }
 ```
 
-Para hacer uso del output podemos llamar el evento desde paréntesis y asignarle un evento `(clickAddToCart)="handler($event)"`: 
+Para hacer uso del output podemos llamar el evento desde paréntesis y asignarle un evento `(clickAddToCart)="handler($event)"`:
 
 ```typescript
 // Componente padre
@@ -321,7 +318,6 @@ export class AppComponent {
 <app-product
   (clickAddToCart)="handleProductAddToCart($event)"
 ></app-product>
-
 ```
 
 El event es recibido desde el `emit` del `EventEmmiter` :
@@ -330,24 +326,24 @@ El event es recibido desde el `emit` del `EventEmmiter` :
 
 ## `Observables`
 
-### Referencias:
+### Referencias
 
-- https://desarrolloweb.com/articulos/introduccion-teorica-observables-angular.html  
-- https://platzi.com/clases/1071-angular2/6433-que-es-un-observable/
+- [Introducción teórica a observables](https://desarrolloweb.com/articulos/introduccion-teorica-observables-angular.html)
+- [Que es un observable](https://platzi.com/clases/1071-angular2/6433-que-es-un-observable/)
 
 Observable es un patrón de diseño de software, donde básicamente tienes algo que observar (Observable) pueden ser eventos de un formulario, un llamada Htttp, etc, nosotros podemos suscribirnos a esos eventos. Otro componente importante es el que observa (Observer) este es el que se suscribe a los eventos y por medio de callbacks captura los eventos que emite el observable, por último tenemos el subject o sujeto que es el que hace que el observable lance los eventos para ser capturados.
 
 Un Observer crea un espacio de ejecución independiente para cada suscriptor que este tenga.
 
-# Ciclo de vida del componente
+## Ciclo de vida del componente
 
 `ngOnChanges` y `ngDoCheck` tienen un error de colisión, ya que los dos pueden cumplir la tarea de escuchar por cambios del componente. El primero es la forma nativa de Angular, el segundo es una forma customizada para ello.
 
  `ngOnDestroy` nos ayudará remover las suscripciones a datos que inicializamos en algún momento, así podemos evitar bucles y fugas de memoria en la aplicación, es decir, limpiamos procesos de memoria siguiendo buenas prácticas.
 
-![](https://static.platzi.com/media/user_upload/Ciclo-97b9ac82-5217-4dd1-ae4d-3f30c08cfa9b.jpg)
+![url](https://static.platzi.com/media/user_upload/Ciclo-97b9ac82-5217-4dd1-ae4d-3f30c08cfa9b.jpg)
 
-# [Pipes](https://angular.io/api/common/DatePipe) | tuberías o transformaciones
+## [Pipes](https://angular.io/api/common/DatePipe) | tuberías o transformaciones
 
 Los `pipes` en Angular son transformaciones que se le puede hacer a un dato dentro de una **template-expression** sirve para formatear data como se desee.
 
@@ -357,21 +353,21 @@ La sintaxis es `{{ variableName | pipeName:argumentos }}`
 
 Nosotros podemos crear nuestros pipes, pero Angular por defecto provee muchos pipes que podemos implementar sin muchas complicaciones, mismos que pueden ser configurables en el `app.module.ts` éstos son los comunes:
 
-- [ AsyncPipe](https://angular.io/api/common/AsyncPipe)
-- [ CurrencyPipe](https://angular.io/api/common/CurrencyPipe)
-- [ DatePipe](https://angular.io/api/common/DatePipe)
-- [ DecimalPipe](https://angular.io/api/common/DecimalPipe)
-- [ I18nPluralPipe](https://angular.io/api/common/I18nPluralPipe)
-- [ I18nSelectPipe](https://angular.io/api/common/I18nSelectPipe)
-- [ JsonPipe](https://angular.io/api/common/JsonPipe)
-- [ KeyValuePipe](https://angular.io/api/common/KeyValuePipe)
-- [ LowerCasePipe](https://angular.io/api/common/LowerCasePipe)
-- [ PercentPipe](https://angular.io/api/common/PercentPipe)
-- [ SlicePipe](https://angular.io/api/common/SlicePipe)
-- [ TitleCasePipe](https://angular.io/api/common/TitleCasePipe)
-- [ UpperCasePipe](https://angular.io/api/common/UpperCasePipe)
+- [AsyncPipe](https://angular.io/api/common/AsyncPipe)
+- [CurrencyPipe](https://angular.io/api/common/CurrencyPipe)
+- [DatePipe](https://angular.io/api/common/DatePipe)
+- [DecimalPipe](https://angular.io/api/common/DecimalPipe)
+- [I18nPluralPipe](https://angular.io/api/common/I18nPluralPipe)
+- [I18nSelectPipe](https://angular.io/api/common/I18nSelectPipe)
+- [JsonPipe](https://angular.io/api/common/JsonPipe)
+- [KeyValuePipe](https://angular.io/api/common/KeyValuePipe)
+- [LowerCasePipe](https://angular.io/api/common/LowerCasePipe)
+- [PercentPipe](https://angular.io/api/common/PercentPipe)
+- [SlicePipe](https://angular.io/api/common/SlicePipe)
+- [TitleCasePipe](https://angular.io/api/common/TitleCasePipe)
+- [UpperCasePipe](https://angular.io/api/common/UpperCasePipe)
 
-[Pueden ver unos ejemplos acá](https://bit.ly/2oRRj0Z) 
+[Pueden ver unos ejemplos acá](https://bit.ly/2oRRj0Z)
 
 Para agregar localismos a nuestros pipes (en este caso mexicanos) tendríamos que agregar el idioma a un `provider` dentro de `app.module.ts` de la siguiente forma:
 
@@ -403,8 +399,8 @@ Un dato puede ingresar y puede ser convertido segun el pipe usado
 Recuerda que si quieres generar tus propios pipes puedes usar
 
 ```bash
-$ ng generate pipe <name> 
-$ ng g pipe <name>
+ng generate pipe <name> 
+ng g pipe <name>
 ```
 
 ### Ejemplo de pipe custom
@@ -422,17 +418,17 @@ export class ExponentialPipe implements PipeTransform {
 }
 ```
 
-# ngModule
+## ngModule
 
 Los módulos en angular sirven para resumir o adjuntar varios artefactos de Angular como servicios, componentes y directivas, dividiendo y abstrayendo el dominio de la aplicación.
 
-De esta manera 
+De esta manera
 
 Los componentes que hacen parte de una página en particular se pueden encapsular en un mismo módulo.
 
 Los módulos especiales son core y shared.
 
-- **core**: Guarda toda la funcionalidad de la aplicación que va a ser compartida, es decir que genera una sóla referencia de la funcionalidad, siguiendo el principio Singleton de SOLID, facilitando así el traslado de funcionalidad entre aplicaciones. guarda todos los servicios y componentes que usaremos a lo largo de todos los otros módulos. Este sera usado en **todos ** los otros componentes y/o modulos respetando los principios SOLID (SINGLETON)
+- **core**: Guarda toda la funcionalidad de la aplicación que va a ser compartida, es decir que genera una sóla referencia de la funcionalidad, siguiendo el principio Singleton de SOLID, facilitando así el traslado de funcionalidad entre aplicaciones. guarda todos los servicios y componentes que usaremos a lo largo de todos los otros módulos. Este sera usado en **todos** los otros componentes y/o modulos respetando los principios SOLID (SINGLETON)
 - **shared**: Encapsula los componentes y servicios compartidos para la aplicación. podemos almacenar componentes y servicios compartidos. En este podemos tener componentes servicios y/o compartidos.
 
 ## RUTAS EN ANGULAR
@@ -450,10 +446,9 @@ const routes: Routes = [
     component = componentName
   },
 ]
-  
 ```
 
-Donde: 
+Donde
 
 - `path` = ruta relativa al home ('/') de nuestra app
 - `component` = componente importado desde `componentName.component.ts`
@@ -483,7 +478,7 @@ Para definir una página no encontrada podemos utilizar la ruta `'**'` que simbo
 
 ### Redirecciones
 
-Para las redirecciones tenemos que usar las propiedades `redirectTo:'route'` y `pathMatch:'full'` 
+Para las redirecciones tenemos que usar las propiedades `redirectTo:'route'` y `pathMatch:'full'`
 
 ```typescript
   {
@@ -515,7 +510,7 @@ Puedes definir una clase para cuando una ruta matchee completamente al agregar l
 
 La recomendación es llamar "`active`" al routerLinkActive (`routerLinkActive="active">`), de esta manera podrás acceder desde el css mediante la clase `.active`
 
-**html**
+`html`
 
 ```html
 <nav>
@@ -525,7 +520,7 @@ La recomendación es llamar "`active`" al routerLinkActive (`routerLinkActive="a
 </nav>
 ```
 
-**scss**
+`scss`
 
 ```css
 nav a {
@@ -562,7 +557,6 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
-
 ```
 
 ### Vistas Anidadas
@@ -610,9 +604,7 @@ constroutes: Routes = [
   ];
 ```
 
-
-
-# Servicios
+## Servicios
 
 Los servicios proveen datos esencialmente. La forma de crear un servicio es en la terminal con los comandos ‘ng g s nombreServicio’.
 Por lo general tenemos 2 métodos esenciales en los servicios, uno para obtener todos los objetos guardados en una variable, y otro para obtener 1 objeto especifico.
@@ -728,7 +720,7 @@ ngOnInit() {
   }
 ```
 
-# **Modularizacion**
+## **Modularizacion**
 
 Un modulo encapsula varios elementos de una aplicación. Por lo general se modulariza cada vista de nuestra aplicación. Para crear un modulo se utiliza el comando ‘ng g m nombreModulo’
 
@@ -797,7 +789,7 @@ exportclassHomeModule {
 }
 ```
 
-## Lazy 
+## Lazy
 
 Es una técnica que ayuda a reducir el peso de las aplicaciones, de esta forma carga mas rápido el proyecto. La carga inicial de una pagina no debería ser Lazy ya que necesitamos que se cargue de una, como por ejemplo el Home.
 
@@ -855,7 +847,7 @@ import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
   })
 ```
 
-# [Creando vistas con Angular schematic](https://material.angular.io/guide/schematics)
+## [Creando vistas con Angular schematic](https://material.angular.io/guide/schematics)
 
 *Schematics* es una forma de crear archivos o reglas desde el CLI (command line interfaces), material ya tiene incluídos algunos schematics muy útiles para poder crear componentes de uso regular.
 
@@ -863,7 +855,7 @@ Para poder crear un schematic tienes que tener instalado `'angular/cdk'`, mismo 
 
 Los schematics generan código, así que [busca en la documentación que quieres crear](https://material.angular.io/guide/schematics) y pégalo en la línea de comandos, por ejemplo:
 
-```
+```code
 ng generate @angular/material:dashboard admin/components/dashboard
 
 ng generate @angular/material:table admin/components/list-products
@@ -873,13 +865,13 @@ ng generate @angular/material:navigation admin/components/nav
 ng generate @angular/material:address-form admin/components/product-form
 ```
 
-# [`HtttpClient`](https://angular.io/guide/http)
+## [`HtttpClient`](https://angular.io/guide/http)
 
 La mayoría de las aplicaciones front-end se comunican con los servicios de back-end a través del protocolo HTTP. Los navegadores modernos admiten dos API diferentes para realizar solicitudes HTTP: la interfaz XMLHttpRequest y la API fetch(), pero Angular implementa su propia interfaz basada en XMLHttpRequest para facilitar el fetching de datos, api expuesta por los navegadores.
 
 `HttpClient` viene desde `@angular/common/http` y ofrece una interfaz API HTTP de cliente simplificada para aplicaciones Angular.
 
-Los beneficios adicionales de **HttpClient** incluyen: 
+Los beneficios adicionales de **HttpClient** incluyen:
 
 - Suite de **pruebas** simplificadas
 - Requests y responses **tipados**
@@ -942,13 +934,13 @@ export class ProductsService {
 }
 ```
 
-# Ambientes en Angular
+## Ambientes en Angular
 
 Un entorno de aplicación en Angular (environment) es información de configuración JSON que le dice al sistema de compilación qué archivos cambiar cuando usa ng build y ng serve.
 
 La recomendación es hacer ambientes dentro del directorio `environments/environment.[nombre].ts`, y para registrarlo necesitas modificar el archivo `angular.json`
 
-Para agregar un nuevo ambiente al `angular.json` se necesitan duplicar el environment de **`build`** y de **`serve`** dentro de **projects.<project-name>.architect.build.configurations.nameOfNewEnvironment** y de **projects.<project-name>.architect.serve.configurations.production** y cambiar production por el nombre que quieras que reciba tu environment, como staging o local, etc.
+Para agregar un nuevo ambiente al `angular.json` se necesitan duplicar el environment de **`build`** y de **`serve`** dentro de **`projects.<project-name>.architect.build.configurations.nameOfNewEnvironment`** y de **`projects.<project-name>.architect.serve.configurations.production`** y cambiar production por el nombre que quieras que reciba tu environment, como staging o local, etc.
 
 Recuerda que es muy delicado este archivo y que lo tienes que hacer a conciencia, además de que tienes que colocar la ruta de tu archivo de environments en `fileReplacements`, porque lo que hace este archivo es reemplazar las ocurrencias de importación de `src/environments/environment.ts` por el archivo de ambiente que le indiques.
 
@@ -974,7 +966,7 @@ Recuerda que es muy delicado este archivo y que lo tienes que hacer a conciencia
 }
 ```
 
-# Formularios Reactivos
+## Formularios Reactivos
 
 Los formularios reactivos ayudan a manejar entradas de formulario cuyos valores cambian con un enfoque explícito e inmutable para administrar el estado de un formulario en un momento dado.
 
@@ -1030,7 +1022,76 @@ export class Component implements OnInit {
 {{ emailField.valid }} <!-- Imprime true o false si el input es válido -->
 ```
 
-# Reactive programming
+## Reactive programming
 
 - [Rxjs](https://rxjs-dev.firebaseapp.com/guide/)
 - [Operators](https://rxjs-dev.firebaseapp.com/guide/operators)
+
+## Estrategias de precarga de módulos
+
+- **PreloadAllModules:** Carga todos los módulos cuando la aplicación no tenga trabajos pendientes. La desventaja de esta estrategia es que descarga todos los módulos sin importar si se necesitan o no y si la aplicación consta de muchos módulos o la red está lenta genera mucha contención.
+
+- **Personalizada:** También se llama estrategia de carga selectiva. Para lograr esto debemos implementar un servicio que la interfaz `PreloadingStrategy` y marcar las rutas que se quieren precargar.
+
+Implementación del servicio
+
+```typescript
+import { Injectable } from '@angular/core';
+import { PreloadingStrategy, Route } from '@angular/router';
+import { Observable, of } from 'rxjs';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class MyPreloadService implements PreloadingStrategy {
+
+  preload(route: Route, load: () => Observable<any>): Observable<any> {
+    if (route.data && route.data['preload']) {
+      return load();
+    } else {
+      // retorna un observable en vacío
+      return of();
+    }
+  }
+}
+```
+
+Marcado de la ruta a precargar
+
+```typescript
+      {
+        path: 'home',
+        loadChildren: () => import('./home/home.module').then(m => m.HomeModule),
+        data: {preload: true}
+      },
+```
+
+- **QuicklinkStrategy:** Detecta los link que estan en el viewport y precarga esos módulos utilizando IntersectionObserver.
+Para implementar esta estrategia se debe instalar el componete [ngx-quicklink](https://github.com/mgechev/ngx-quicklink)
+
+- **Cadenas de Markov:** Las cadenas de Markov permiten visualizar cada una de las probabilidades que se tienen en la navegación de la aplicación. Evalúa la probabilidad que tiene cada una de las vistas de la aplicación frente a un comportamiento previo de los usuarios, generando un modelo de predicción de precarga de módulos, con el fin de mejorar el rendimiento y la experiencia de usuario mientras navega por la aplicación.
+Para lograr esto se utiliza [Google Analitics](https://analytics.google.com/analytics/web/) y [Guess](https://github.com/guess-js/guess)
+
+- **Services workers:** Para esta técnica se requiere utilizar el componete [Services workers](https://angular.io/guide/service-worker-getting-started) de Angular y convertir nuestra aplicación en uan PWA y así se van almacenado los archivos en cache y la próxima vez que se necesiten estos archivos no se descargan del servidor.
+
+Para convertir una aplicación en PWA se debe correr el comando:
+
+```code
+ng add @angular/pwa --project *project-name*
+```
+
+## Server Side Render (SSR)
+
+El **Server side rendering (o renderizado en la parte servidor)** se basa en la posibilidad de poder renderizar el HTML de nuestros componentes en cadenas de texto en la parte servidor vez de la parte cliente. Estas cadenas serán las respuestas que nuestros servidores de NodeJS devolverán a las peticiones principales de nuestra Web. En vez de funciones que manipulan DOM en el navegador, delegamos este renderizado a una fase anterior en el servidor.
+
+Esto ayuda a solucionar tres puntos claves
+
+- SEO: Posicionamiento en motores de búsqueda
+- Performance: El renderizado se hace en el servidor
+- First page: La carga de la página inicial se hace mucho más rápida ya que se hace en el servidor.
+
+Para habilitar es se debe instalar el paquete [Server-side rendering (SSR)](https://angular.io/guide/universal)
+
+```code
+ng add @nguniversal/express-engine
+```

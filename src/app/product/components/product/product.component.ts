@@ -15,16 +15,16 @@ export class ProductComponent implements OnChanges, OnInit, OnDestroy {
     constructor(
         private cartService: CartService
     ) {
-        console.log('1. constructor');
+        // console.log('1. constructor');
     }
 
     ngOnChanges(changes: SimpleChanges): void {
-        console.log('2. ngOnChanges');
-        console.log(changes);
+        // console.log('2. ngOnChanges');
+        // console.log(changes);
     }
 
     ngOnInit() {
-        console.log('3. OnInit');
+        // console.log('3. OnInit');
     }
 
     // ngOnChanges y ngDoCheck hacen lo mismo y no se deben tener al tiempo
@@ -33,7 +33,7 @@ export class ProductComponent implements OnChanges, OnInit, OnDestroy {
     // }
 
     ngOnDestroy() {
-        console.log('5. OnDestroy');
+        // console.log('5. OnDestroy');
     }
 
     addCart() {
