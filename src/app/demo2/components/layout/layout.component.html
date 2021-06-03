@@ -1,0 +1,9 @@
+<div class="data">
+    <p>Ejemplo con Subscribe: {{ value }}</p>
+    <p>Ejemplo con Async: {{ value2$ | async}}</p>
+</div>
+
+<div class="list">
+    <app-list title="lista 1" [data]="listaUno" (add)="addItem(listaUno, $event)"></app-list>
+    <app-list title="lista 2" [data]="listaDos" (add)="addItem(listaUno, $event)"></app-list>
+</div>
