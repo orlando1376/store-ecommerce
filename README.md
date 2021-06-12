@@ -1099,4 +1099,5 @@ ng add @nguniversal/express-engine
 ## ChangeDection
 
 Es el proceso de actualización de la vista (DOM) cuando los datos han cambiado.
+
 Para este ejemplo se implementa con un pipe que utiliza el concepto de funciones puras (cuando a una función le envía los mismos parámetros la función no realiza el proceso y solo devuelve el valor almacenado con [memoize](https://www.freecodecamp.org/news/understanding-memoize-in-javascript-51d07d19430e/))
